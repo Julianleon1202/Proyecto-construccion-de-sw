@@ -55,6 +55,9 @@
     <div id="productos"></div>
 
     <?php
+
+    include("conexion.php");
+
     if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {
         // Verificar el valor del botón enviado
         $submitValue = $_POST["submit"];
