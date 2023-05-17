@@ -42,11 +42,11 @@
         </div>
 
         <div class="botones">
-        <button type="submit" name="submit" id="agregar">Agregar</button>
-        <button type="submit" name="submit" id="actualizar">Actualizar</button>
-        <button type="submit" name="submit" id="eliminar">Eliminar</button>
-        <button type="submit" name="submit" id="buscar">Buscar</button>
-        <button type="submit" name="submit" id="listar">Listar Productos</button>
+        <button type="submit" name="submit" id="agregar" value= "Agregar">Agregar</button>
+        <button type="submit" name="submit" id="actualizar" value= "Actualizar">Actualizar</button>
+        <button type="submit" name="submit" id="eliminar" value= "Eliminar">Eliminar</button>
+        <button type="submit" name="submit" id="buscar" value= "Buscar">Buscar</button>
+        <button type="submit" name="submit" id="listar" value= "Listar productos">Listar Productos</button>
         </div>
 
         <img src="droguería.jpg" alt="Imagen de droguería">
@@ -59,21 +59,19 @@
     include("conexion.php");
 
     if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {
-        // Verificar el valor del botón enviado
         $submitValue = $_POST["submit"];
-
-        // Realizar acciones según el botón presionado
         if ($submitValue === "Agregar") {
             include("agregar_productos.php");
-        } elseif ($submitValue === "Actualizar") {
-            include("actualizar_productos.php");
+            agregarProducto($conn);
+         } elseif ($submitValue === "Actualizar") {
+             include("actualizar_productos.php");
         } elseif ($submitValue === "Eliminar") {
             include("eliminar_productos.php");
-        } elseif ($submitValue === "Buscar") {
-            include("buscar_productos.php");
-        } elseif ($submitValue === "Listar Productos") {
-            include("listar_productos.php");
-        }
+         } elseif ($submitValue === "Buscar") {
+             include("buscar_productos.php");
+         } elseif ($submitValue === "Listar Productos") {
+             include("listar_productos.php");
+         }
     }
     ?>
 
