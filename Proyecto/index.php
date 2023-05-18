@@ -4,9 +4,79 @@
     <meta charset="UTF-8">
     <title>Registro de productos</title>
     <link rel="stylesheet" href="style.css">
+
+    <!-- <script>
+        function validarFormulario() {
+            // Validación del campo Nombre
+            var nombre = document.getElementById("nombre").value;
+            if (nombre === "") {
+                alert("Por favor, ingrese el nombre del producto.");
+                return false;
+            }
+            if (!/^[a-zA-Z\s]+$/.test(nombre)) {
+                alert("El nombre del producto solo puede contener letras y espacios.");
+                return false;
+            }
+
+            // Validación del campo Código
+            var codigo = document.getElementById("codigo").value;
+            if (codigo === "") {
+                alert("Por favor, ingrese el código del producto.");
+                return false;
+            }
+            if (!/^\d{1,5}$/.test(codigo)) {
+                alert("El código del producto debe ser un número de máximo 5 dígitos.");
+                return false;
+            }
+
+            // Validación del campo Proveedor
+            var proveedor = document.getElementById("proveedor").value;
+            if (proveedor === "") {
+                alert("Por favor, ingrese el proveedor del producto.");
+                return false;
+            }
+            if (!/^[a-zA-Z\s]+$/.test(proveedor)) {
+                alert("El proveedor del producto solo puede contener letras y espacios.");
+                return false;
+            }
+
+            // Validación del campo Precio de compra
+            var compra = document.getElementById("compra").value;
+            if (compra === "") {
+                alert("Por favor, ingrese el precio de compra del producto.");
+                return false;
+            }
+            if (!/^\d+(\.\d{1,2})?$/.test(compra)) {
+                alert("El precio de compra del producto debe ser un número válido.");
+                return false;
+            }
+
+            // Validación del campo Precio de venta
+            var venta = document.getElementById("venta").value;
+            if (venta === "") {
+                alert("Por favor, ingrese el precio de venta del producto.");
+                return false;
+            }
+            if (!/^\d+(\.\d{1,2})?$/.test(venta)) {
+                alert("El precio de venta del producto debe ser un número válido.");
+                return false;
+            }
+
+            // Validación del campo Descripción
+            var descripcion = document.getElementById("descripcion").value;
+            if (descripcion === "") {
+                alert("Por favor, ingrese la descripción del producto.");
+                return false;
+            }
+
+            // Si todas las validaciones son exitosas, se envía el formulario
+            return true;
+        }
+    </script> -->
+
 </head>
 <body>
-    <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+    <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>" onsubmit="return validarFormulario();">
         <div class="titulo">
         <h2>Ingrese los datos del producto</h2>
         </div>
@@ -65,10 +135,13 @@
             agregarProducto($conn);
          } elseif ($submitValue === "Actualizar") {
              include("actualizar_productos.php");
+             actualizarProducto($conn);
         } elseif ($submitValue === "Eliminar") {
             include("eliminar_productos.php");
+            eliminarProducto($conn);
          } elseif ($submitValue === "Buscar") {
              include("buscar_productos.php");
+             buscarProducto($conn);
          } elseif ($submitValue === "Listar Productos") {
              include("listar_productos.php");
          }

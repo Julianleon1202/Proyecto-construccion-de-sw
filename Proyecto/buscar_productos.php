@@ -1,9 +1,10 @@
 <?php
+function buscarProducto($conn) {
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nombre = $_POST["nombre"];
 
     // Consulta SQL para buscar el producto por nombre
-    $sql = "SELECT * FROM productos WHERE nombre = '$nombre'";
+    $sql = "SELECT * FROM `productos` WHERE nombre = '$nombre'";
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
@@ -20,5 +21,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
         echo "No se encontró ningún producto con ese nombre";
     }
+}
 }
 ?>
