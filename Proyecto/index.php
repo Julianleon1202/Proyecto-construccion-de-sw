@@ -83,32 +83,32 @@
         <br>
         <div class="input-container">
             <label for="nombre">Nombre:</label>
-            <input type="text" id="nombre" name="nombre" placeholder="Ingrese el nombre del producto">
+            <input type="text" pattern="^[A-Za-z]+$" title="Ingrese solo letras" id="nombre" name="nombre" placeholder="Ingrese el nombre del producto">
         </div>
 
         <div class="input-container">
             <label for="codigo">Código:</label>
-            <input type="text" id="codigo" name="codigo" placeholder="Ingrese el código del producto">
+            <input type="text"  pattern="^[0-9]+$" title="Ingrese solo números" id="codigo" name="codigo" placeholder="Ingrese el código del producto">
         </div>
 
         <div class="input-container">
             <label for="proveedor">Proveedor:</label>
-            <input type="text" id="proveedor" name="proveedor" placeholder="Ingrese el proveedor del producto">
+            <input type="text" pattern="^[A-Za-z]+$" title="Ingrese solo letras" id="proveedor" name="proveedor" placeholder="Ingrese el proveedor del producto">
         </div>
 
         <div class="input-container">
             <label for="compra">Precio de compra:</label>
-            <input type="text" id="compra" name="compra" placeholder="Ingrese el precio de compra del producto">
+            <input type="text" pattern="^\d{1,3}(?:,\d{3})*(?:\.\d{2})?+$" title="Ingrese un precio válido" id="compra" name="compra" placeholder="Ingrese el precio de compra del producto">
         </div>
 
         <div class="input-container">
             <label for="venta">Precio de venta:</label>
-            <input type="text" id="venta" name="venta" placeholder="Ingrese el precio de venta del producto">
+            <input type="text" pattern="^\d{1,3}(?:,\d{3})*(?:\.\d{2})?+$" title="Ingrese un precio válido" id="venta" name="venta" placeholder="Ingrese el precio de venta del producto">
         </div>
 
         <div class="input-container">
             <label for="descripcion">Descripción:</label>
-            <input type="text" id="descripcion" name="descripcion" placeholder="Descripción del producto">
+            <input type="text" maxlength="256" id="descripcion" name="descripcion" placeholder="Descripción del producto">
         </div>
 
         <div class="botones">
