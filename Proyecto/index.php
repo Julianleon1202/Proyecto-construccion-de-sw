@@ -83,7 +83,7 @@
         <br>
         <div class="input-container">
             <label for="nombre">Nombre:</label>
-            <input type="text" pattern="^[A-Za-z]+$" title="Ingrese solo letras" id="nombre" name="nombre" placeholder="Ingrese el nombre del producto">
+            <input type="text" pattern="^[A-Za-z\s]+$" title="Ingrese solo letras" id="nombre" name="nombre" placeholder="Ingrese el nombre del producto">
         </div>
 
         <div class="input-container">
@@ -93,7 +93,7 @@
 
         <div class="input-container">
             <label for="proveedor">Proveedor:</label>
-            <input type="text" pattern="^[A-Za-z]+$" title="Ingrese solo letras" id="proveedor" name="proveedor" placeholder="Ingrese el proveedor del producto">
+            <input type="text" pattern="^[A-Za-z\s]+$" title="Ingrese solo letras" id="proveedor" name="proveedor" placeholder="Ingrese el proveedor del producto">
         </div>
 
         <div class="input-container">
