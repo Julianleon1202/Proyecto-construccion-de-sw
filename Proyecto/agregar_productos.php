@@ -8,6 +8,11 @@ function agregarProducto($conn) {
         $venta = $_POST["venta"];
         $descripcion = $_POST["descripcion"];
 
+        if (empty($nombre) || empty($codigo) || empty($proveedor) || empty($compra) || empty($venta) || empty($descripcion)) {
+            echo "<script>alert('Debe rellenar todos los campos.');</script>";
+            return;
+        }
+
         // Verificar si el producto ya existe en la base de datos
         $sql = "SELECT * FROM `productos` WHERE `codigo` = '$codigo'";
         $result = $conn->query($sql);
