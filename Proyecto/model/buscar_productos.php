@@ -1,5 +1,5 @@
 <?php
-include("conexion.php");
+include("../controller/conexion.php");
 
 function buscarProducto($conn) {
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -55,14 +55,14 @@ function buscarProducto($conn) {
                 echo "</body>";
                 echo "</html>";
                 
-                echo '<meta http-equiv="refresh" content="5; url=index.php?codigo=' . $row['codigo'] . '&nombre=' . $row['nombre'] . '&proveedor=' . $row['proveedor'] . '&compra=' . $row['compra'] . '&venta=' . $row['venta'] . '&descripcion=' . $row['descripcion'] . '" />';
+                echo '<meta http-equiv="refresh" content="5; url=../view/index.php?codigo=' . $row['codigo'] . '&nombre=' . $row['nombre'] . '&proveedor=' . $row['proveedor'] . '&compra=' . $row['compra'] . '&venta=' . $row['venta'] . '&descripcion=' . $row['descripcion'] . '" />';
                 echo '<br/>';
                 echo '<br/>';
                 echo '<br/>';
                 echo 'En 5 segundos, será redireccionado a la página principal...';
             } else {
                 echo "No se encontraron productos con el código: " . $codigo;
-                echo '<meta http-equiv="refresh" content="5; url=index.php" />';
+                echo '<meta http-equiv="refresh" content="5; url=../view/index.php" />';
                 echo '<br/>';
                 echo '<br/>';
                 echo '<br/>';
@@ -73,6 +73,22 @@ function buscarProducto($conn) {
         }
     }
 }
+$buscarProducto = buscarProducto($conn);
 
-buscarProducto($conn);
+class BuscarProductoFactory {
+    private $conn;
+
+    public function __construct($conn) {
+        $this->conn = $conn;
+    }
+
+    public function create() {
+        return function() {
+            buscarProducto($this->conn);
+        };
+    }
+}
+
+return new BuscarProductoFactory($conn);
+
 ?>

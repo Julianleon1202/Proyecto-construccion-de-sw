@@ -1,6 +1,19 @@
 <?php
-function agregarProducto($conn) {
-    if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["submit"])) {
+
+class AgregarProductoFactory {
+    public function create($conn) {
+        return new AgregarProducto($conn);
+    }
+}
+
+class AgregarProducto {
+    private $conn;
+
+    public function __construct($conn) {
+        $this->conn = $conn;
+    }
+
+    public function execute() {
         $nombre = $_POST["nombre"];
         $codigo = $_POST["codigo"];
         $proveedor = $_POST["proveedor"];
@@ -15,7 +28,7 @@ function agregarProducto($conn) {
 
         // Verificar si el producto ya existe en la base de datos
         $sql = "SELECT * FROM `productos` WHERE `codigo` = '$codigo'";
-        $result = $conn->query($sql);
+        $result = $this->conn->query($sql);
 
         if ($result && $result->num_rows > 0) {
             echo "<script>alert('El producto ya existe en la base de datos.');</script>";
@@ -24,12 +37,14 @@ function agregarProducto($conn) {
             $sql = "INSERT INTO `productos` (`nombre`, `codigo`, `proveedor`, `compra`, `venta`, `descripcion`)
                     VALUES ('$nombre', '$codigo', '$proveedor', '$compra', '$venta', '$descripcion')";
 
-            if ($conn->query($sql) === TRUE) {
+            if ($this->conn->query($sql) === true) {
                 echo "<script>alert('El producto ha sido agregado a la base de datos.');</script>";
             } else {
-                echo "Error al agregar el producto: " . $conn->error;
+                echo "Error al agregar el producto: " . $this->conn->error;
             }
         }
     }
 }
+
+return new AgregarProductoFactory();
 ?>
