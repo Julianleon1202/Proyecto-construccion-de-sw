@@ -1,4 +1,5 @@
 <?php
+
 function eliminarProducto($conn) {
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $codigo = $_POST["codigo"];
@@ -17,4 +18,32 @@ function eliminarProducto($conn) {
         }
     }
 }
+
+class EliminarProductoFactory {
+    private static $instance;
+    private $conn;
+
+    private function __construct($conn) {
+        $this->conn = $conn;
+    }
+
+    public static function getInstance($conn) {
+        if (self::$instance === null) {
+            self::$instance = new self($conn);
+        }
+        return self::$instance;
+    }
+
+    public function create() {
+        $conn = $this->conn;
+
+        return function() use ($conn) {
+            eliminarProducto($conn);
+        };
+    }
+}
+
+// ...
+
+return EliminarProductoFactory::class;
 ?>
